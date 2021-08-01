@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./
+    volumes:
+      - .:/src
+    command: npm run start
+    ports:
+      - "9093:9093"
+    environment:
+      VIRTUAL_HOST: psb.sutholo.com
+      VIRTUAL_PORT: 9093
+      LETSENCRYPT_HOST: psb.sutholo.com
+      LETSENCRYPT_EMAIL: admin@sutholo.com
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
